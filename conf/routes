@@ -1,15 +1,1 @@
-#GET     /                                    controllers.Application.listProjects
-#PUT     /projects/:name                      controllers.Application.createProject(name: String)
-#GET     /projects/list                       controllers.Application.listProjects
-#GET     /projects/:id                        controllers.Application.projects(id: Long)
-#PUT     /projects/:id/:name                  controllers.Application.addTaskToProject(name: String, id: Long)
-#PATCH   /tasks/:id                           controllers.Application.modifyTask(id: Long, color:Option[String] ?= None)
-#
-#DELETE  /projects/:name                      controllers.Application.delete(name: String)
-#
-
-GET         /users                  users.controllers.UserController.all
-GET         /users/:login           users.controllers.UserController.byLogin(login: String)
-POST /users/register users.controllers.UserController.register
-
-POST /oauth/accessToken authentication.oauth2.OAuth2Controller.accessToken
+# sird router is used

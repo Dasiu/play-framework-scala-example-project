@@ -9,8 +9,10 @@ import be.objectify.deadbolt.scala.cache._
 import be.objectify.deadbolt.scala.{ActionBuilders, DeadboltComponents}
 import com.softwaremill.macwire.wire
 import commons.CommonsComponents
+import commons.config.WithControllerComponents
 import play.api.mvc.PlayBodyParsers
-import users.WithControllerComponents
+import play.api.routing.Router
+import play.api.routing.sird._
 
 trait AuthenticationsComponents extends CommonsComponents with DeadboltComponents with WithControllerComponents{
   lazy val passwordValidator: PasswordValidator = wire[PasswordValidatorImpl]
@@ -31,4 +33,8 @@ trait AuthenticationsComponents extends CommonsComponents with DeadboltComponent
   lazy val oAuthDeadboltHandler: OAuthDeadboltHandler = wire[OAuthDeadboltHandler]
 
   protected def createActionBuilders: PlayBodyParsers => ActionBuilders = parsers => actionBuilders(deadboltActions(parsers))
+
+  val authenticationRoutes: Router.Routes = {
+    case POST(p"/oauth/accessToken") => oAuth2Controller.accessToken
+  }
 }

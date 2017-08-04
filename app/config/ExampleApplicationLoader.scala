@@ -3,7 +3,6 @@ package config
 import _root_.controllers.AssetsComponents
 import authentication.AuthenticationsComponents
 import be.objectify.deadbolt.scala.ActionBuilders
-import com.softwaremill.macwire._
 import play.api.ApplicationLoader.Context
 import play.api._
 import play.api.db.evolutions.{DynamicEvolutions, EvolutionsComponents}
@@ -12,7 +11,6 @@ import play.api.db.slick.evolutions.SlickEvolutionsComponents
 import play.api.i18n._
 import play.api.libs.ws.ahc.AhcWSComponents
 import play.api.routing.Router
-import router.Routes
 import play.filters.HttpFiltersComponents
 import slick.basic.{BasicProfile, DatabaseConfig}
 import users.UsersComponents
@@ -55,10 +53,6 @@ class ExampleComponents(context: Context) extends BuiltInComponentsFromContext(c
 
   lazy val actionBuilders: ActionBuilders = createActionBuilders(playBodyParsers)
 
-  lazy val router: Router = {
-    // add the prefix string in local scope for the Routes constructor
-    val prefix: String = "/"
-    wire[Routes]
-  }
+  lazy val router: Router = Router.from(userRoutes.orElse(authenticationRoutes))
 
 }
