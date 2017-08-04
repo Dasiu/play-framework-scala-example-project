@@ -1,4 +1,4 @@
-name := """play-slick-example"""
+name := """play-scala-slick-compile-time-di-example-project"""
 
 version := "1.0-SNAPSHOT"
 

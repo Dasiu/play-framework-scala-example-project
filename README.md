@@ -1,4 +1,4 @@
-play-2.6-slick-3.2-example-project
+play-scala-slick-compile-time-di-example-project
 ==================
 
 Example project for Play framework 2.6
